@@ -1,6 +1,7 @@
 <?php
 /**
- * @author Matthieu Napoli
+ * @author  Matthieu Napoli
+ * @license LGPL v3 (See LICENSE file)
  */
 
 namespace PHPBench;
@@ -8,14 +9,27 @@ namespace PHPBench;
 /**
  * Bench case
  */
-class BenchCase
+abstract class BenchCase
 {
 
     /**
      * Number of iteration for the bench
      * @var int
      */
-    private $_iterationNumber = 1;
+    protected $_iterationNumber;
+
+    /**
+     * Constructor
+     *
+     * Check that $this->_iterationNumber is defined in subclasses
+     */
+    public function __construct()
+    {
+        if ($this->_iterationNumber <= 0) {
+            throw new \Exception('The protected property '.get_class($this).'::_iterationNumber'
+                .' must be defined to a positive number. Check the documentation.');
+        }
+    }
 
     /**
      * Run the bench

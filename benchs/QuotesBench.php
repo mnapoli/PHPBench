@@ -3,16 +3,18 @@
  * @author Matthieu Napoli
  */
 
-namespace Benchs;
-
 require_once __DIR__.'/../library/PHPBench/BenchCase.php';
-require_once __DIR__.'/../library/PHPBench/Runner.php';
 
 /**
  * PHP quotes bench
  */
 class QuotesBench extends \PHPBench\BenchCase
 {
+
+    /**
+     * Run each bench 500000 times
+     */
+    protected $_iterationNumber = 500000;
 
     public function benchSingleQuotes1()
     {
@@ -48,10 +50,3 @@ class QuotesBench extends \PHPBench\BenchCase
     }
 
 }
-
-$benchCase = new QuotesBench();
-// Run each bench 100 000 times
-$benchCase->setIterationNumber(100000);
-
-$benchRunner = new \PHPBench\Runner();
-$benchRunner->run($benchCase);

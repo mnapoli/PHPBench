@@ -1,6 +1,7 @@
 <?php
 /**
- * @author Matthieu Napoli
+ * @author  Matthieu Napoli
+ * @license LGPL v3 (See LICENSE file)
  */
 
 namespace PHPBench;
@@ -14,20 +15,60 @@ class Runner
 {
 
     /**
-     * Run the bench case
+     * Bench cases to run
+     * @var array(BenchCase)
+     */
+    protected $_benchCases = array();
+
+    /**
+     * Add a bench case to the run list
      *
      * @param BenchCase $benchCase Bench case
      *
      * @return void
      */
-    public function run(BenchCase $benchCase)
+    public function addBenchCase(BenchCase $benchCase)
     {
-        // Calibration
-        $baseTime = $this->calibrate($benchCase->getIterationNumber());
-        // Run the bench
-        $results = $benchCase->run();
-        // Render the results
-        $this->displayResults($results, $baseTime);
+        $this->_benchCases[] = $benchCase;
+    }
+
+    /**
+     * Add a bench suite to the run list
+     *
+     * @param BenchSuite $benchSuite Bench suite
+     *
+     * @return void
+     */
+    public function addBenchSuite(BenchSuite $benchSuite)
+    {
+        $benchCases = $benchSuite->getBenchCases();
+        foreach ($benchCases as $benchCase) {
+            $this->_benchCases[] = $benchCase;
+        }
+    }
+
+    /**
+     * Run the bench case
+     *
+     * @param BenchSuite $benchSuite Bench suite to run immediatly
+     *
+     * @return void
+     */
+    public function run(BenchSuite $benchSuite = null)
+    {
+        if ($benchSuite !== null) {
+            $this->addBenchSuite($benchSuite);
+        }
+        echo 'PHPBench - https://github.com/mnapoli/PHPBench - Matthieu Napoli'
+            .' - LGPL v3'.PHP_EOL.PHP_EOL;
+        foreach ($this->_benchCases as $benchCase) {
+            // Calibration
+            $baseTime = $this->calibrate($benchCase->getIterationNumber());
+            // Run the bench
+            $results = $benchCase->run();
+            // Render the results
+            $this->displayResults($benchCase, $results, $baseTime);
+        }
     }
 
     /**
@@ -50,12 +91,13 @@ class Runner
     /**
      * Display the results
      *
-     * @param array $results  Results
-     * @param float $baseTime Base time of an empty bench
+     * @param BenchCase $benchCase Bench case
+     * @param array     $results   Results
+     * @param float     $baseTime  Base time of an empty bench
      *
      * @return void
      */
-    protected function displayResults($results, $baseTime)
+    protected function displayResults($benchCase, $results, $baseTime)
     {
         // Substract the base time
         foreach ($results as $benchStep => $time) {
@@ -72,6 +114,7 @@ class Runner
             }
         }
         // Display
+        echo 'Bench case : '.get_class($benchCase).PHP_EOL;
         foreach ($results as $benchStep => $time) {
             if ($lowest > 0) {
                 $percentage = number_format($time / $lowest * 100, 0);
@@ -79,7 +122,8 @@ class Runner
                 $percentage = 100;
             }
             $time = number_format($time, 3);
-            echo $benchStep.' : '.$time.' ms - '.$percentage.' %'.PHP_EOL;
+            $benchName = str_replace('bench', '', $benchStep);
+            echo '    '.$benchName.' : '.$time.' ms - '.$percentage.' %'.PHP_EOL;
         }
     }
 
