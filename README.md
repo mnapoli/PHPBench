@@ -1,14 +1,9 @@
 # PHPBench - PHP benchmark framework
 by Matthieu Napoli
 
-## Project home
+* Project home [http://github.com/mnapoli/PHPBench](http://github.com/mnapoli/PHPBench)
+* Documentation [http://github.com/mnapoli/PHPBench/wiki](http://github.com/mnapoli/PHPBench/wiki)
 
-http://github.com/mnapoli/PHPBench
-
-## Documentation
-
-http://github.com/mnapoli/PHPBench/wiki
-
-## Requirements
+### Requirements
 
 * __PHP 5.3__ or higher
