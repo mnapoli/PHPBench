@@ -35,6 +35,7 @@ class Runner
     protected function displayResults($results)
     {
         foreach ($results as $benchStep => $time) {
+            $time = number_format($time, 3);
             echo $benchStep.' : '.$time.' ms'.PHP_EOL;
         }
     }
