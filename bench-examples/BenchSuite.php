@@ -3,8 +3,7 @@
  * @author Matthieu Napoli
  */
 
-require_once __DIR__.'/../library/PHPBench/BenchSuite.php';
-require_once __DIR__.'/../library/PHPBench/Runner.php';
+require_once __DIR__ . '/../vendor/autoload.php';
 
 /**
  * Bench suite

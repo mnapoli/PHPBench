@@ -1,0 +1,10 @@
+{
+	"name": "mnapoli/phpbench",
+	"autoload": {
+		"psr-0": {
+			"PHPBench": "src/"
+		}
+	},
+	"require": {
+	}
+}

@@ -3,8 +3,6 @@
  * @author Matthieu Napoli
  */
 
-require_once __DIR__.'/../library/PHPBench/BenchCase.php';
-
 /**
  * PHP quotes bench
  */
