@@ -123,7 +123,7 @@ class Runner
             }
             $time = number_format($time, 3);
             $benchName = str_replace('bench', '', $benchStep);
-            echo '    '.$benchName.' : '.$time.' ms - '.$percentage.' %'.PHP_EOL;
+            echo '    '.$benchName.' : '.$time.' s - '.$percentage.' %'.PHP_EOL;
         }
     }
 
