@@ -1,0 +1,10 @@
+PHPBench - https://github.com/mnapoli/PHPBench - Matthieu Napoli - LGPL v3
+
+Bench case : QuotesBench
+    SingleQuotes1 : 0.079 s - 100 %
+    SingleQuotes2 : 0.099 s - 125 %
+    SingleQuotes3 : 0.247 s - 314 %
+    DoubleQuotes1 : 0.119 s - 151 %
+    DoubleQuotes2 : 0.098 s - 125 %
+    DoubleQuotes3 : 0.208 s - 264 %
+    DoubleQuotes4 : 0.252 s - 320 %

@@ -16,4 +16,5 @@ class BenchSuite extends \PHPBench\BenchSuite
 }
 
 $benchRunner = new \PHPBench\Runner();
+$benchRunner->enableLogToFile(true);
 $benchRunner->run(new BenchSuite());

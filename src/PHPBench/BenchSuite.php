@@ -19,7 +19,7 @@ abstract class BenchSuite
      * Path to look for bench cases
      * @var string
      */
-    protected $_path;
+	protected $_path;
 
     /**
      * Pattern to find bench case files
@@ -88,5 +88,10 @@ abstract class BenchSuite
         }
         return $benchCases;
     }
+
+	public function getPath()
+	{
+		return $this->_path;
+	}
 
 }
